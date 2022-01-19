@@ -1,21 +1,17 @@
 import strategie
-class tournoi:
+
+
+class Tournoi:
+
     def __init__(self) -> None:
         """
         Constructeur
         """
-    def duel(self,strat1: strategie, strat2: strategie, nb_tour: int) -> None:
+
+    def duel(self,strat1: strategie.Strategie, strat2: strategie.Strategie, nb_tour: int) -> None:
         """
         Fais s'affronter deux strategie nb_tour fois
         """
-        for i in range(nb_tour-1):
-            strat1_a_cooperer = strat1.coopére_tu()
-            strat2_a_cooperer = strat2.coopére_tu()
-            if strat2_a_cooperer :
-                strat1.tu_as_reçu_une_coopereration()
-            else :
-                strat1.tu_as_été_trahi()
-            if strat1_a_cooperer :
-                strat2.tu_as_reçu_une_coopereration()
-            else :
-                strat2.tu_as_été_trahi()
+        for i in range(nb_tour):
+            strat1.add_last_round(strat2.play())
+            strat2.add_last_round(strat1.play())
